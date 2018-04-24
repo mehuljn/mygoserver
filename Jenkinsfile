@@ -15,7 +15,7 @@ podTemplate(label: 'golang-app', containers: [
         def K8S_DEPLOYMENT_NAME = 'mygoserver'
 
         stage('Clone Hugo App Repository') {
-            checkout scm
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/mehuljn/mygoserver.git']]])
  
             container('docker') {
                 stage('Docker Build & Push Current & Latest Versions') {
