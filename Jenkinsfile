@@ -1,5 +1,5 @@
 #!groovy
-podTemplate(label: 'pod-hugo-app', containers: [
+podTemplate(label: 'golang-app', containers: [
     containerTemplate(name: 'kubectl', image: 'smesch/kubectl', ttyEnabled: true, command: 'cat',
         volumes: [secretVolume(secretName: 'kube-config', mountPath: '/root/.kube')]),
     containerTemplate(name: 'docker', image: 'docker', ttyEnabled: true, command: 'cat',
@@ -8,7 +8,7 @@ podTemplate(label: 'pod-hugo-app', containers: [
                   hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')
   ]) {
 
-    node('pod-hugo-app') {
+    node('golang-app') {
 
         def DOCKER_HUB_ACCOUNT = 'mehuljani'
         def DOCKER_IMAGE_NAME = 'mygoserver'
