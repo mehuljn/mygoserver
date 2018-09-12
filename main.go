@@ -16,5 +16,5 @@ func handler(w http.ResponseWriter, r *http.Request) {
    if err != nil {
       panic(err)
    } 
-   io.WriteString(w, "Build 24 : Hello world! from node " + name )
+   io.WriteString(w, "Build 25 : Hello world! from node " + name )
 }
