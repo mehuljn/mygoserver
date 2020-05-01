@@ -28,8 +28,8 @@ podTemplate(label: 'golang-app', containers: [
 
             container('kubectl') {
                 stage('Deploy New Build To Kubernetes') {
-                    sh ("kubectl config set-cluster the-cluster --server="https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}" --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt")
-                    sh ("kubectl config set-credentials pod-token --token='$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)'")
+                    sh ("kubectl config set-cluster the-cluster --server=\'https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}\' --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt")
+                    sh ("kubectl config set-credentials pod-token --token=\'$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)\'")
                     sh ("kubectl config set-context pod-context --cluster=the-cluster --user=pod-token")
                     sh ("kubectl config use-context pod-context")
                     sh ("kubectl set image deployment/${K8S_DEPLOYMENT_NAME} ${K8S_DEPLOYMENT_NAME}=${DOCKER_HUB_ACCOUNT}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}")
